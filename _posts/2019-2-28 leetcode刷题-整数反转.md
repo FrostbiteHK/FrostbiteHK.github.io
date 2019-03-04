@@ -1,0 +1,33 @@
+---
+layout:     post
+title:      leetcode刷题
+subtitle:   整数反转
+date:       2019-02-28
+author:     HK
+header-img: img/post-bg-ios9-web.jpg
+catalog: true
+tags:
+    - leetcode
+---
+# leetcode刷题记录
+## 整数反转
+
+ 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+ 
+ 示例 1: 输入: 123 输出: 321 示例 2: 输入: -123 输出: -321 示例 3: 输入: 120 输出: 21
+    
+解题思路1：解题思路：重复弹出x的最后一位数字，在没有堆栈/数组的帮助下，可以用数学方法。注意检查结果是否溢出。如果逆序整型数溢出的话就返回0。
+
+
+``` java
+class Solution {
+    public int reverse(int x) {
+        long res = 0;
+        for(; x != 0; x /= 10)
+            res = res*10 + x % 10;
+        return res>Integer.MAX_VALUE || res< Integer.MIN_VALUE ? 0:(int)res;
+        
+    }
+}
+```
+耗时：43ms
