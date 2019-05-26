@@ -55,3 +55,32 @@ class Solution {
     }
 }
 ```
+
+#### 解题思路2：递归
+```java
+class Solution {
+    List<String> list = new ArrayList();
+    
+    public List<String> letterCasePermutation(String S) {
+        letterCase(new StringBuilder(S), 0);
+        return list;
+    }
+    
+    public void letterCase(StringBuilder str, int n) {
+        list.add(str.toString());
+        for (int i = n; i < str.length(); i ++) {
+            if (str.charAt(i)-'A' >= 0) {
+                if (str.charAt(i)-'a' >= 0) {
+                    str.setCharAt(i, (char)(str.charAt(i)-32));
+                    letterCase(str, i+1);
+                    str.setCharAt(i, (char)(str.charAt(i)+32));
+                } else {
+                    str.setCharAt(i, (char)(str.charAt(i)+32));
+                    letterCase(str, i+1);
+                    str.setCharAt(i, (char)(str.charAt(i)-32));
+                }
+            }
+        }
+    }
+}
+```
